@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import Loading from "./Loading";
 import SingleTask from "./SingleTask";
 
 const MyTasks = () => {
-  const [tasks, setTasks] = useState(null);
+  // react tanStack query 
+  const { data: tasks = [], refetch, isLoading } = useQuery({
+    queryKey: ["myTasks"],
+    queryFn: async () => {
+      const res = await fetch('http://localhost:5000/myTasks');
+      const data = await res.json();
+      return data;
+    },
+  });
 
-  useEffect(() => {
-    fetch("http://localhost:5000/myTasks")
-      .then((res) => res.json())
-      .then((data) => setTasks(data));
-  }, []);
-
-  console.log(tasks);
+  if(isLoading){
+    return <Loading/>
+  }
 
   return (
     <div className=" max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 ">
