@@ -6,12 +6,12 @@ const SingleTask = ({ task }) => {
   const { title, descriptions, image } = task;
   return (
     <div className="max-w-[1240px] mx-auto">
-      <div className="bg-white py-9 px-4 rounded-lg">
+      <div className="bg-green-400/20 py-9 px-4 rounded-lg">
         <div className="flex justify-between">
           <img src={image} className="w-20 h-20 rounded-full" alt="" />
           <div className="ml-4">
-            <h2 className="md:text-xl font-bold">{title}</h2>
-            <p>{descriptions}</p>
+            <h2 className="md:text-md font-bold">{title}</h2>
+            <p className="text-md">{descriptions}</p>
           </div>
         </div>
         <div className="flex justify-between items-center mt-4 ">

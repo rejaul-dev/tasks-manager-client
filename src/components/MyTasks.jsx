@@ -5,7 +5,7 @@ const MyTasks = () => {
   const [tasks, setTasks] = useState(null);
 
   useEffect(() => {
-    fetch("data.json")
+    fetch("http://localhost:5000/myTasks")
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, []);
@@ -14,7 +14,6 @@ const MyTasks = () => {
 
   return (
     <div className=" max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 ">
-     
       {tasks?.map((task, index) => (
         <SingleTask key={index} task={task}></SingleTask>
       ))}
